@@ -1,28 +1,13 @@
 const {Router} = require('express');
-const axios = require('axios');
-const Dev = require('./models/Dev');
+
+const SearchController = require('./controllers/SearchController')
+const DevController = require('./controllers/DevController')
 
 const routes = Router();
 
-routes.post('/devs', async (request, response) => {
-    
-    const { github_username, techs} = request.body;
+routes.get('/devs', DevController.index);
+routes.post('/devs', DevController.store);
 
-    const apiResponse = await axios.get(`https://api.github.com/users/${github_username}`);
-
-    const {name = login, bio, avatar_url} = apiResponse.data;
-    
-    const techsArray = techs.split(',').map(tech => tech.trim());
-
-    await Dev.create({
-        github_username,
-        name,
-        avatar_url,
-        bio,
-        techs: techsArray,
-    })
-
-    return response.json(apiResponse.data.repos_url);
-});
+routes.get('/search', SearchController.index);
 
 module.exports = routes;
