@@ -75,7 +75,7 @@ export default ({onSubmit}) => {
                   name="longitude" 
                   id="longitude" 
                   required 
-                  onChange={e => setLatitude(e.target.value)} value={longitude} />
+                  onChange={e => setLongitude(e.target.value)} value={longitude} />
             </div>
           </div>
 
