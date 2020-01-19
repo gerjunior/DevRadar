@@ -1,6 +1,8 @@
 # DevRadar
 Este projeto foi desenvolvido em uma semana no decorrer da Semana Omnistack #10 da [Rocketseat](https://rocketseat.com.br/). 
-A ideia do aplicativo é buscar desenvolvedores que utilizam dado filtro de tecnologia e que estão presentes em um raio de 10km da sua posição.
+
+A ideia do aplicativo é buscar desenvolvedores próximos de você que trabalham em determinada tecnologia.
+Exemplo: Sou desenvolvedor React e desejo procurar outros desenvolvedores React. Na barrinha de pesquisa, eu posso incluir a palavra 'React' e encontrar todas as pessoas próximas em um raio de 10km que possuem entendimento desta tecnologia.
 
 ## Web
 
