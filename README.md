@@ -19,9 +19,11 @@ Características:
 * Filtro por dev localizado em um raio de 10km da posição atual do usuário
 * Atualização em tempo real dos desenvolvedores
 
-![Mobile pesquisando React](/images/mobile1.png "Mobile pesquisando React")
+| Radar | Perfil |
+|:-----:|:------:|
+|![Mobile tecnologias do dev](/images/mobile-techs.png "Mobile tecnologias do dev")|![Mobile perfil no GitHub](/images/mobile-profile.png "Mobile perfil no GitHub")|
 
-![Mobile pesquisando C#](/images/mobile2.png "Mobile pesquisando C#")
+
 
 
 
