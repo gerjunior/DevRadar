@@ -1,16 +1,18 @@
-import React, {useState, useEffect} from 'react'
-import {View, StyleSheet, Image, Text, TextInput, TouchableOpacity} from 'react-native'
-import MapView, {Marker, Callout} from 'react-native-maps'
-import {requestPermissionsAsync, getCurrentPositionAsync} from 'expo-location'
-import {MaterialIcons} from '@expo/vector-icons'
+import React, {useState, useEffect } from 'react'
+import { View, StyleSheet, Image, Text, TextInput, TouchableOpacity} from 'react-native'
+import MapView, {Marker, Callout } from 'react-native-maps'
+import { requestPermissionsAsync, getCurrentPositionAsync } from 'expo-location'
+import { MaterialIcons} from '@expo/vector-icons'
 
 import api from '../services/api'
+import {connect, disconnect, subscribeToNewDevs} from '../services/socket'
 
 export default ({navigation}) => {
 
     const [devs, setDevs] = useState([])
     const [currentRegion, setCurrentRegion] = useState(null)
     const [techs, setTechs] = useState('')
+
     useEffect(() => {
         async function loadInitialPosition(){
             const {granted} = await requestPermissionsAsync();
@@ -33,6 +35,22 @@ export default ({navigation}) => {
         loadInitialPosition()
     }, [])
 
+    useEffect(() => {
+        subscribeToNewDevs(dev => setDevs([...devs, dev]))
+    }, [devs]);
+
+    function setupWebSocket(){
+        disconnect()
+
+        const {latitude, longitude} = currentRegion;
+
+        connect(
+            latitude,
+            longitude,
+            techs
+        );
+    }
+
     async function loadDevs(){
         const {latitude, longitude} = currentRegion;
 
@@ -45,6 +63,8 @@ export default ({navigation}) => {
         });
 
         setDevs(response.data.devs);
+
+        setupWebSocket();
     }
 
     function handleRegionChanged(region){
