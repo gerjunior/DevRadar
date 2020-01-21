@@ -33,14 +33,10 @@ export default props => {
 
   async function reloadDevs(deleted) {
 
-    const indexDeleted = await devs.indexOf(deleted)
-    const newDevs = devs
-    newDevs.splice(indexDeleted, 1)
+    const newDevs = devs.filter(dev => dev._id !== deleted._id)
 
     setDevs([...newDevs])
   }
-
-
 
   return (
     <div id="app">
