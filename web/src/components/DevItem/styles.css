@@ -49,3 +49,19 @@ li.dev-item a {
 li.dev-item a:hover{
     color: #5a2ea6;
 }
+
+li.dev-item button {
+    float: right;
+    font-size: 20px;
+    padding: 5px;
+
+}
+
+li.dev-item button#edit {
+    color: green;
+}
+
+li.dev-item button#delete {
+    color: red;
+}
+

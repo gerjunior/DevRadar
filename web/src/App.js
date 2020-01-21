@@ -15,7 +15,7 @@ export default props => {
   const [devs, setDevs] = useState([]);
 
   useEffect(() => {
-    async function loadDevs(){
+    async function loadDevs() {
       const response = await api.get('./devs');
 
       setDevs(response.data)
@@ -24,12 +24,23 @@ export default props => {
     loadDevs();
   }, [])
 
-  async function handleAddDev(data){
+  async function handleAddDev(data) {
 
-      const response = await api.post('/devs', data)
+    const response = await api.post('/devs', data)
 
-      setDevs([...devs, response.data])
+    setDevs([...devs, response.data])
   }
+
+  async function reloadDevs(deleted) {
+
+    const indexDeleted = await devs.indexOf(deleted)
+    const newDevs = devs
+    newDevs.splice(indexDeleted, 1)
+
+    setDevs([...newDevs])
+  }
+
+
 
   return (
     <div id="app">
@@ -40,7 +51,7 @@ export default props => {
       <main>
         <ul>
           {devs.map(dev => (
-            <DevItem key={dev._id} dev={dev}/>
+            <DevItem sendDeleted={(data) => reloadDevs(data)} key={dev._id} dev={dev} />
           ))}
         </ul>
       </main>
