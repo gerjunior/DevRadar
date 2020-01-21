@@ -31,7 +31,7 @@ export default props => {
     setDevs([...devs, response.data])
   }
 
-  async function reloadDevs(deleted) {
+  function reloadDevs(deleted) {
 
     const newDevs = devs.filter(dev => dev._id !== deleted._id)
 
